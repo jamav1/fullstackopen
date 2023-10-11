@@ -1,0 +1,12 @@
+sequenceDiagram
+    participant browser
+    participant server
+
+    browser > GET spa > server
+    server > HTML document > browser
+    browser > GET main.css > server
+    server > css file > browser
+    browser > GET spa.js > server
+    server > JS file > browser (browser starts to execute the js file that fetches the data from JSON)
+    browser > GET data.json > server 
+    server > data.json > browser (browser renders notes)

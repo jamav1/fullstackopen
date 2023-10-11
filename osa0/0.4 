@@ -1,0 +1,14 @@
+sequenceDiagram
+    participant browser
+    participant server
+
+    Browser > POST [URL]new_note > Server
+    Server > Redirect browser > Browser
+    Browser > GET [URL]notes > Server
+    Server > HTML document > Browser
+    Browser > GET [URL]css > Server
+    Server > css file > browser
+    Browser > GET [URL]main.js > Server
+    Server > JS file > Browser (Browser starts executing the JS code that fetches json from the server)
+    Browser > GET[URL]data.json > Server
+    Server > datacontent of notes > Browser (Browser executes callback function that renders the notes)

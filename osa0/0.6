@@ -1,0 +1,6 @@
+sequenceDiagram
+    participant browser
+    participant server
+
+    browser > POST new_note_spa > server (message in notes)
+    server > updated JSON file > Browser (JSON file is updated and rerenders the notebox)
