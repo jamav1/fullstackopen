@@ -1,58 +1,14 @@
 import { useState, useEffect } from 'react'
 import personService from './services/persons'
-
-const Notification = ({ message, type }) => {
-  if (message === null) {
-    return null
-  }
-  return (
-    <div className={type}>
-      {message}
-    </div>
-  )
-}
-
-const Person = ({ person, onRemove })  => {
-  const label = 'delete' 
-
-  return (
-  <li>
-    {person.name} {person.number}
-    <button onClick={() => onRemove(person.id)}>{label}</button>
-    </li>
-  )
-}
-
-const Filter = ({value, onChange}) => (
-  <div>
-    filter shown with: <input value={value} onChange={onChange} />
-  </div>
-)
+import Filter from './components/Filter'
+import Notification from './components/Notification'
+import PersonForm from './components/PersonForm'
+import Person from './components/Person'
 
 const Persons = ({ persons, onRemove }) => (
   <ul>
     {persons.map(person => <Person key={person.name} person={person} onRemove={onRemove}/>)}
   </ul>
-)
-
-const PersonForm = ({
-  onSubmit,
-  newName,
-  onNameChange,
-  newNumber,
-  onNumberChange,
-}) => (
-  <form onSubmit={onSubmit}>
-    <div>
-      name: <input value={newName} onChange={onNameChange} />
-    </div>
-    <div>
-      number: <input value={newNumber} onChange={onNumberChange} />
-    </div>
-    <div>
-      <button type="submit">add</button>
-    </div>
-  </form>
 )
 
 const App = () => {
