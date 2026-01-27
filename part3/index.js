@@ -1,5 +1,12 @@
+require('dotenv').config()
+const Note = require('./models/note')
 const express = require('express')
+
 const app = express()
+
+const password = process.argv[2]
+//const url = 
+//`mongodb+srv://wwaltsuu_db_user:${password}@cluster0.ytbv0pb.mongodb.net/?appName=noteApp`
 
 app.use(express.static('dist'))
 
@@ -38,7 +45,9 @@ app.get('/', (request, response) => {
 })
 
 app.get('/api/notes/', (request, response) => {
-    response.json(notes)
+  Note.find({}).then(notes => {
+        response.json(notes)
+  })
 })
 
 app.get('/api/notes/:id', (request, response) => {
@@ -93,6 +102,6 @@ const unknownEndpoint = (request, response) => {
 
 app.use(unknownEndpoint)
 
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT
 app.listen(PORT)
 console.log(`Server running on port ${PORT}`)
